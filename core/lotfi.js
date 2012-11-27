@@ -2,7 +2,7 @@ function lotfi(){
 	function newset(setobject){			
 			this.name=setobject.name;
 			this.type=(setobject.type=='continuous'?setobject.type:'discrete');			
-			this.number_of_var=(setobject.number_of_var==undefined?0:setobject.number_of_var);
+			this.number_of_term=(setobject.number_of_var==undefined?0:setobject.number_of_var);
 			
 			//fuzzy set name validation, cannot be same as lotfi functions.
 			if(this.name=='lotfi'||this.name=='newset'){
@@ -10,9 +10,9 @@ function lotfi(){
 				return
 			}			
 			//fuzzy variables declaration
-			for(var i=0;i<this.number_of_var;i++){
-				eval('var temp=setobject.var'+i+'.name;');
-				eval('this.'+temp+'=setobject.var'+i+';');				
+			for(var i=0;i<this.number_of_term;i++){
+				eval('var temp=setobject.term'+i+'.name;');
+				eval('this.'+temp+'=setobject.term'+i+';');				
 			}		
 			//fuzzy variables declaration till here
 			
@@ -28,7 +28,7 @@ function lotfi(){
 	//error handling
 	function logerror(error){
 		if(error.type){
-			switch (error.type) {
+		switch (error.type) {
 				case 1: alert('Please use other name, this word '+(error.variable_name?'\''+error.variable_name+'\'':'')+' is reserved');break			
 				case 2: alert('This variable name '+(error.variable_name?'\''+error.variable_name+'\'':'')+' cannot be found');break
 				default: alert('error');		
@@ -47,18 +47,18 @@ var lotfi=new lotfi();
 lotfi.newset({
 	name:'temperature',
 	type:'discrete',
-	number_of_var:3,
-	var0:{
+	number_of_term:3,
+	term0:{
 		name:'low',
 		type:'triangle',
 		peak:3,
 		span:5},
-	var1:{
+	term1:{
 		name:'medium',
 		type:'triangle',
 		peak:5,
 		span:5},
-	var2:{
+	term2:{
 		name:'high',
 		type:'triangle',
 		peak:7,
